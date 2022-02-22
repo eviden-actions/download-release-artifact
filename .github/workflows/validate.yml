@@ -31,3 +31,15 @@ jobs:
 
       - name: '✅ Lint code'
         run: npm run lint
+
+  test:
+    name: '🧪 Test'
+    needs: [lint]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Use Cycos NPM Proxy'
+        uses: ./
+        with:
+          name: 'v1.0.0.tgz'
+          tag: 'v1.0.0'
