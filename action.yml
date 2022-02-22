@@ -1,0 +1,48 @@
+name: 'Download Release Artifact'
+description: 'Download a release artifact that was previously uploaded in the workflow by the upload-artifact action'
+
+inputs:
+  name:
+    description: 'Artifact name'
+    required: true
+  path:
+    description: 'Destination path'
+    required: false
+    default: '.'
+  tag:
+    description: The release tag to download from
+    required: true
+  token:
+    description: Github personal access token with repo permissions
+    required: false
+    default: ${{ github.token }}
+
+runs:
+  using: composite
+  steps:
+    - id: path
+      name: 'Create destination path'
+      shell: bash
+      env:
+        PATH: ${{ inputs.path }}
+
+      run: mkdir -p "${PATH}"
+
+    - id: list_assets
+      name: '📥 Download Artifact'
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      env:
+        NAME: ${{ inputs.name }}
+        TAG: ${{ inputs.tag }}
+        GH_TOKEN: ${{ inputs.token }}
+        RELEASE_URL: ${{github.api_url}}/repos/${{ github.repository }}/releases/tags/${{ inputs.tag }}
+
+      run: |
+        # Retrieve the artifact's URL
+        ASSET_URL=$(curl -H "Authorization: token ${GH_TOKEN}" "${RELEASE_URL}" | jq ".assets[] | select(.name==\"${NAME}\") | .url" | sed 's/\"//g')
+
+        # Download the artifact
+        curl -vLJO -H 'Accept: application/octet-stream' \
+          -H "Authorization: token ${GH_TOKEN}" \
+          "${ASSET_URL}?access_token=${GH_TOKEN}"
