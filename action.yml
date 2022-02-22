@@ -23,8 +23,10 @@ runs:
     - id: path
       name: '📁 Create destination path'
       shell: bash
-      if: inputs.path != '.'
-      run: mkdir -p ${{ inputs.path }}
+      run: |
+        if [[ "${{inputs.path}}" != "." ]]; then
+          mkdir -p "${{inputs.path}}"
+        fi
 
     - id: release_info
       name: '📑 Get release info'
