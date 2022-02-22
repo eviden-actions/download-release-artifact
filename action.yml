@@ -23,25 +23,20 @@ runs:
     - id: path
       name: '📁 Create destination path'
       shell: bash
-      if: ${{ inputs.path }} != '.'
-      env:
-        PATH: ${{ inputs.path }}
-
-      run: mkdir -p "${PATH}"
+      if: inputs.path != '.'
+      run: mkdir -p ${{ inputs.path }}
 
     - id: list_assets
       name: '📥 Download Artifact'
       shell: bash
       working-directory: ${{ inputs.path }}
       env:
-        NAME: ${{ inputs.name }}
-        TAG: ${{ inputs.tag }}
         GH_TOKEN: ${{ inputs.token }}
         RELEASE_URL: ${{github.api_url}}/repos/${{ github.repository }}/releases/tags/${{ inputs.tag }}
 
       run: |
         # Retrieve the artifact's URL
-        ASSET_URL=$(curl -H "Authorization: token ${GH_TOKEN}" "${RELEASE_URL}" | jq ".assets[] | select(.name==\"${NAME}\") | .url" | sed 's/\"//g')
+        ASSET_URL=$(curl -H "Authorization: token ${GH_TOKEN}" "${RELEASE_URL}" | jq ".assets[] | select(.name==\"${{ inputs.name }}\") | .url" | sed 's/\"//g')
 
         # Download the artifact
         curl -vLJO -H 'Accept: application/octet-stream' \

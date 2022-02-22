@@ -44,7 +44,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
 
-      - name: 'Use Cycos NPM Proxy'
+      - name: '🏃 Download v1.0.0.tgz from GitHub'
         uses: ./
         with:
           name: 'v1.0.0.tgz'
