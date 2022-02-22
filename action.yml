@@ -33,7 +33,7 @@ runs:
         RELEASE_URL: ${{github.api_url}}/repos/${{ github.repository }}/releases/tags/${{ inputs.tag }}
       run: |
         # Retrieve the release's details
-        RELEASE_INFO=$(curl -s -H "Authorization: token ${{ inputs.token }}" ${{ inputs.RELEASE_URL }})
+        RELEASE_INFO=$(curl -s -H "Authorization: token ${{ inputs.token }}" ${RELEASE_URL})
         echo RELEASE_INFO=$RELEASE_INFO >> $GITHUB_ENV
 
     - id: get_artifact_url
