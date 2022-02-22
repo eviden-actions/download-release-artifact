@@ -44,8 +44,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
 
-      - name: '🏃 Download v1.0.0.tgz from GitHub'
+      - name: '🏃 Download test.txt from GitHub'
         uses: ./
         with:
-          name: 'v1.0.0.tgz'
+          name: 'test.txt'
           tag: 'v1.0.0'
