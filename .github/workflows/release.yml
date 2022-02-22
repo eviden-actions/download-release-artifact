@@ -18,8 +18,7 @@ jobs:
     name: '🏷️ Release'
     needs: [validate]
     runs-on: ubuntu-latest
-    container:
-      image: node:lts-bullseye
+    # container: node:lts-bullseye
 
     environment:
       name: production

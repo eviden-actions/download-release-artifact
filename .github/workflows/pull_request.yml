@@ -13,8 +13,7 @@ jobs:
   lint-msg:
     name: '🕵️‍♂️ Lint Commit Message'
     runs-on: ubuntu-latest
-    container:
-      image: node:lts-bullseye
+    # container: node:lts-bullseye
 
     steps:
       - name: '☁️ Checkout repository'
