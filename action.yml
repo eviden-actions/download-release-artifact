@@ -40,8 +40,10 @@ runs:
       name: '🔗 Get Artifact URL'
       shell: bash
       working-directory: ${{ inputs.path }}
+      env:
+        RELEASE_INFO: ${{ env.RELEASE_INFO }}
       run: |
-        ASSET_URL=$(echo ${{ env.RELEASE_INFO}} | jq ".assets[] | select(.name==\"${{ inputs.name }}\") | .url" | sed 's/\"//g')
+        ASSET_URL=$(echo $RELEASE_INFO | jq ".assets[] | select(.name==\"${{ inputs.name }}\") | .url" | sed 's/\"//g')
         echo ASSET_URL=$ASSET_URL >> $GITHUB_ENV
 
     - id: get_artifact
