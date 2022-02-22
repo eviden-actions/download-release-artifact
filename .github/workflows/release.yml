@@ -16,7 +16,7 @@ jobs:
 
   release:
     name: '🏷️ Release'
-    needs: [lint]
+    needs: [validate]
     runs-on: ubuntu-latest
     container:
       image: node:lts-bullseye
