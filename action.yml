@@ -21,8 +21,9 @@ runs:
   using: composite
   steps:
     - id: path
-      name: 'Create destination path'
+      name: '📁 Create destination path'
       shell: bash
+      if: ${{ inputs.path }} != '.'
       env:
         PATH: ${{ inputs.path }}
 
