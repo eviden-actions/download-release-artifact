@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/ATOS-Actions/download-release-artifact/compare/v1.0.2...v1.0.3) (2022-02-24)
+
+
+### Bug Fixes
+
+* add logging and error handling ([#5](https://github.com/ATOS-Actions/download-release-artifact/issues/5)) ([733850d](https://github.com/ATOS-Actions/download-release-artifact/commit/733850db1dce8c2d813d6bffc785e4fddf70fbc5))
+
 ## [1.0.2](https://github.com/ATOS-Actions/download-release-artifact/compare/v1.0.1...v1.0.2) (2022-02-22)
 
 
