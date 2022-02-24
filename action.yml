@@ -34,9 +34,8 @@ runs:
       env:
         RELEASE_URL: ${{github.api_url}}/repos/${{ github.repository }}/releases/tags/${{ inputs.tag }}
       run: |
-        # Retrieve the release's details
-        RELEASE_INFO=$(curl -s -H "Authorization: token ${{ inputs.token }}" ${RELEASE_URL})
-        echo RELEASE_INFO=$RELEASE_INFO >> $GITHUB_ENV
+        echo "📑 Get release info from ${{ env.RELEASE_URL }}"
+        echo RELEASE_INFO=$(curl -s -H "Authorization: token ${{ inputs.token }}" ${RELEASE_URL}) >> $GITHUB_ENV
 
     - id: get_artifact_url
       name: '🔗 Get Artifact URL'
@@ -45,14 +44,19 @@ runs:
       env:
         RELEASE_INFO: ${{ env.RELEASE_INFO }}
       run: |
-        ASSET_URL=$(echo $RELEASE_INFO | jq ".assets[] | select(.name==\"${{ inputs.name }}\") | .url" | sed 's/\"//g')
-        echo ASSET_URL=$ASSET_URL >> $GITHUB_ENV
+        echo ASSET_URL=$(echo $RELEASE_INFO | jq ".assets[] | select(.name==\"${{ inputs.name }}\") | .url" | sed 's/\"//g') >> $GITHUB_ENV
 
     - id: get_artifact
       name: '📥 Download Artifact'
       shell: bash
       working-directory: ${{ inputs.path }}
       run: |
-        curl -vLJO -H 'Accept: application/octet-stream' \
-          -H "Authorization: token ${{ inputs.token }}" \
-          "${{ env.ASSET_URL }}?access_token=${{ inputs.token }}"
+        if [[ -n "${{env.ASSET_URL}}" ]]; then
+          echo "📥 Downloading {{ inputs.name }} from ${{ env.ASSET_URL }}..."
+          curl -vLJO -H 'Accept: application/octet-stream' \
+            -H "Authorization: token ${{ inputs.token }}" \
+            "${{ env.ASSET_URL }}?access_token=${{ inputs.token }}"
+        else
+          echo "❌ Artifact '{{ inputs.name }}' is missing from release ${{ inputs.tag }}!"
+          exit 1
+        fi
