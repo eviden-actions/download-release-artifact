@@ -51,7 +51,12 @@ runs:
       shell: bash
       working-directory: ${{ inputs.path }}
       run: |
-        echo "📥 Download Artifact from ${{ env.ASSET_URL }}"
-        curl -vLJO -H 'Accept: application/octet-stream' \
-          -H "Authorization: token ${{ inputs.token }}" \
-          "${{ env.ASSET_URL }}?access_token=${{ inputs.token }}"
+        if [[ -n "${{env.ASSET_URL}}" ]]; then
+          echo "📥 Download Artifact from ${{ env.ASSET_URL }}"
+          curl -vLJO -H 'Accept: application/octet-stream' \
+            -H "Authorization: token ${{ inputs.token }}" \
+            "${{ env.ASSET_URL }}?access_token=${{ inputs.token }}"
+        else
+          echo "❌ Artifact is missing from release ${{ inputs.tag }}"
+          exit 1
+        fi
