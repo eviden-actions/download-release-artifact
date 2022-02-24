@@ -57,6 +57,6 @@ runs:
             -H "Authorization: token ${{ inputs.token }}" \
             "${{ env.ASSET_URL }}?access_token=${{ inputs.token }}"
         else
-          echo "❌ Artifact '{{ inputs.name }}' is missing from release ${{ inputs.tag }}!"
+          echo "❌ Artifact '${{ inputs.name }}' is missing from release ${{ inputs.tag }}!"
           exit 1
         fi
