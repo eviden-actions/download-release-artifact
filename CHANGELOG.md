@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/ATOS-Actions/download-release-artifact/compare/v1.0.3...v1.0.4) (2022-02-24)
+
+
+### Bug Fixes
+
+* typo ([41f7386](https://github.com/ATOS-Actions/download-release-artifact/commit/41f7386cfabda4926662051bb78f1c71833f47d9))
+
 ## [1.0.3](https://github.com/ATOS-Actions/download-release-artifact/compare/v1.0.2...v1.0.3) (2022-02-24)
 
 
