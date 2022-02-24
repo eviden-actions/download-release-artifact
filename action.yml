@@ -52,11 +52,11 @@ runs:
       working-directory: ${{ inputs.path }}
       run: |
         if [[ -n "${{env.ASSET_URL}}" ]]; then
-          echo "📥 Download Artifact from ${{ env.ASSET_URL }}"
+          echo "📥 Downloading {{ inputs.name }} from ${{ env.ASSET_URL }}..."
           curl -vLJO -H 'Accept: application/octet-stream' \
             -H "Authorization: token ${{ inputs.token }}" \
             "${{ env.ASSET_URL }}?access_token=${{ inputs.token }}"
         else
-          echo "❌ Artifact is missing from release ${{ inputs.tag }}"
+          echo "❌ Artifact '{{ inputs.name }}' is missing from release ${{ inputs.tag }}!"
           exit 1
         fi
