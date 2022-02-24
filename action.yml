@@ -34,9 +34,7 @@ runs:
       env:
         RELEASE_URL: ${{github.api_url}}/repos/${{ github.repository }}/releases/tags/${{ inputs.tag }}
       run: |
-        # Retrieve the release's details
-        RELEASE_INFO=$(curl -s -H "Authorization: token ${{ inputs.token }}" ${RELEASE_URL})
-        echo RELEASE_INFO=$RELEASE_INFO >> $GITHUB_ENV
+        echo RELEASE_INFO=$(curl -s -H "Authorization: token ${{ inputs.token }}" ${RELEASE_URL}) >> $GITHUB_ENV
 
     - id: get_artifact_url
       name: '🔗 Get Artifact URL'
@@ -45,8 +43,7 @@ runs:
       env:
         RELEASE_INFO: ${{ env.RELEASE_INFO }}
       run: |
-        ASSET_URL=$(echo $RELEASE_INFO | jq ".assets[] | select(.name==\"${{ inputs.name }}\") | .url" | sed 's/\"//g')
-        echo ASSET_URL=$ASSET_URL >> $GITHUB_ENV
+        echo ASSET_URL=$(echo $RELEASE_INFO | jq ".assets[] | select(.name==\"${{ inputs.name }}\") | .url" | sed 's/\"//g') >> $GITHUB_ENV
 
     - id: get_artifact
       name: '📥 Download Artifact'
