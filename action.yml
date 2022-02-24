@@ -34,6 +34,7 @@ runs:
       env:
         RELEASE_URL: ${{github.api_url}}/repos/${{ github.repository }}/releases/tags/${{ inputs.tag }}
       run: |
+        echo "📑 Get release info from ${{ env.RELEASE_URL }}"
         echo RELEASE_INFO=$(curl -s -H "Authorization: token ${{ inputs.token }}" ${RELEASE_URL}) >> $GITHUB_ENV
 
     - id: get_artifact_url
@@ -50,6 +51,7 @@ runs:
       shell: bash
       working-directory: ${{ inputs.path }}
       run: |
+        echo "📥 Download Artifact from ${{ env.ASSET_URL }}"
         curl -vLJO -H 'Accept: application/octet-stream' \
           -H "Authorization: token ${{ inputs.token }}" \
           "${{ env.ASSET_URL }}?access_token=${{ inputs.token }}"
