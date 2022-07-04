@@ -7,17 +7,23 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
+  cancel-runs:
+    name: '▶️ actions'
+    uses: ATOS-Actions/actions/.github/workflows/cancel-workflow.yml@v1
+
+  lint-pr:
+    name: '▶️ ATOS-Actions'
+    needs: [cancel-runs]
+    uses: ATOS-Actions/actions/.github/workflows/lint-pr.yml@v1
+
   lint-code:
     name: '▶️ ATOS-Actions'
+    needs: [cancel-runs]
     uses: ATOS-Actions/actions/.github/workflows/lint-code.yml@v1
 
   test:
     needs: [lint-code]
     uses: ./.github/workflows/test.yml
-
-  lint-pr:
-    name: '▶️ ATOS-Actions'
-    uses: ATOS-Actions/actions/.github/workflows/lint-pr.yml@v1
 
   dependabot:
     name: '▶️ ATOS-Actions'
