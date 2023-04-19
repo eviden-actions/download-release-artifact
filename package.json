@@ -1,11 +1,11 @@
 {
-	"name": "@atos-actions/download-release-artifact",
+	"name": "@eviden-actions/download-release-artifact",
 	"description": "Github action to download a release artifact that was previously uploaded in the workflow by the upload-artifact action",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ATOS-Actions/download-release-artifact.git"
+		"url": "https://github.com/eviden-actions/download-release-artifact.git"
 	},
-	"bugs": "https://github.com/ATOS-Actions/download-release-artifact/issues",
+	"bugs": "https://github.com/eviden-actions/download-release-artifact/issues",
 	"license": "MIT",
 	"private": "true",
 	"version": "1.0.4",

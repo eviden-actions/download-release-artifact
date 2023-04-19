@@ -13,20 +13,20 @@ on:
 jobs:
   cancel-runs:
     name: '▶️ actions'
-    uses: ATOS-Actions/actions/.github/workflows/cancel-workflow.yml@v1
+    uses: eviden-actions/actions/.github/workflows/cancel-workflow.yml@v1
 
   lint-code:
-    name: '▶️ ATOS-Actions'
+    name: '▶️ eviden-actions'
     needs: [cancel-runs]
-    uses: ATOS-Actions/actions/.github/workflows/lint-code.yml@v1
+    uses: eviden-actions/actions/.github/workflows/lint-code.yml@v1
 
   test:
     needs: [lint-code]
     uses: ./.github/workflows/test.yml
 
   release:
-    name: '▶️ ATOS-Actionse'
+    name: '▶️ eviden-actionse'
     needs: [lint-code, test]
-    uses: ATOS-Actions/actions/.github/workflows/release.yml@v1
+    uses: eviden-actions/actions/.github/workflows/release.yml@v1
     secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN  }}
