@@ -11,8 +11,6 @@ updates:
       interval: 'daily'
       time: '00:00'
       timezone: 'Europe/Berlin'
-    reviewers:
-      - 'Th3S4mur41'
 
   - package-ecosystem: 'github-actions'
     directory: '/'
@@ -20,5 +18,8 @@ updates:
       interval: 'daily'
       time: '00:00'
       timezone: 'Europe/Berlin'
-    reviewers:
-      - 'Th3S4mur41'
+    groups:
+      atos-actions:
+        patterns:
+          - 'atos-actions/*'
+          - 'eviden-actions/*'
