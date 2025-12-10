@@ -2,7 +2,7 @@
 
 GitHub Action that downloads an artifact from a GitHub release (public or private)
 
-[![Release](https://github.com/eviden-actions/download-release-artifact/actions/workflows/on_push.yml/badge.svg#main)](https://github.com/eviden-actions/download-release-artifact/actions/workflows/on_push.yml)
+[![Release](https://github.com/eviden-actions/download-release-artifact/actions/workflows/release.yml/badge.svg#main)](https://github.com/eviden-actions/download-release-artifact/actions/workflows/release.yml)
 
 ## Prerequisites
 
