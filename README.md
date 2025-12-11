@@ -2,7 +2,7 @@
 
 GitHub Action that downloads an artifact from a GitHub release (public or private)
 
-[![Release](https://github.com/eviden-actions/download-release-artifact/actions/workflows/release.yml/badge.svg#main)](https://github.com/eviden-actions/download-release-artifact/actions/workflows/release.yml)
+[![Release](https://github.com/atos-actions/download-release-artifact/actions/workflows/release.yml/badge.svg#main)](https://github.com/atos-actions/download-release-artifact/actions/workflows/release.yml)
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ This action depends on `jq` and `curl` being installed.
 
 ```
 steps:
-- uses: eviden-actions/download-release-artifact@v1
+- uses: atos-actions/download-release-artifact@v1
 with:
     name: 'my-artifact-1.0.0.tgz'
     path: './artifacts'
